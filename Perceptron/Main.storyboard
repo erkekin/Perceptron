@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="Perceptron" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
+                        <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KBH-48-84E" customClass="PerceptronView" customModule="Perceptron" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Draw red or blue dots, tap to test, long press to remove all" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DMw-Zl-kAs">
+                                        <rect key="frame" x="19" y="24" width="359" height="21"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="21" id="a6o-QL-XfQ"/>
+                                            <constraint firstAttribute="width" constant="359" id="xsn-nt-AIY"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
+                                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="1" translatesAutoresizingMaskIntoConstraints="NO" id="BIO-6c-wkX">
+                                        <rect key="frame" x="407" y="23" width="185" height="29"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="185" id="BPz-wK-Hdv"/>
+                                            <constraint firstAttribute="height" constant="28" id="dvv-sz-jhr"/>
+                                        </constraints>
+                                        <segments>
+                                            <segment title="RED CLASS"/>
+                                            <segment title="BLUE CLASS"/>
+                                        </segments>
+                                        <connections>
+                                            <action selector="changeClass:" destination="KBH-48-84E" eventType="valueChanged" id="QPR-jw-zCL"/>
+                                        </connections>
+                                    </segmentedControl>
+                                </subviews>
+                                <color key="backgroundColor" red="0.60744922560000003" green="1" blue="0.3215827698" alpha="1" colorSpace="calibratedRGB"/>
+                                <gestureRecognizers/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="BIO-6c-wkX" secondAttribute="trailing" constant="8" id="Zr5-iT-OqH"/>
+                                    <constraint firstItem="DMw-Zl-kAs" firstAttribute="top" secondItem="KBH-48-84E" secondAttribute="top" constant="24" id="q0J-pV-2WP"/>
+                                    <constraint firstItem="BIO-6c-wkX" firstAttribute="top" secondItem="KBH-48-84E" secondAttribute="top" constant="23" id="tOS-FP-d94"/>
+                                    <constraint firstItem="DMw-Zl-kAs" firstAttribute="leading" secondItem="KBH-48-84E" secondAttribute="leading" constant="19" id="xvP-Uz-Ozd"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="KBH-48-84E" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="64j-rw-m2R"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="KBH-48-84E" secondAttribute="bottom" id="8aw-LX-cdz"/>
+                            <constraint firstItem="KBH-48-84E" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="hQW-7y-kRG"/>
+                            <constraint firstAttribute="trailing" secondItem="KBH-48-84E" secondAttribute="trailing" id="put-wM-TfI"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" prompt="" id="fGU-te-rZ3"/>
+                    <connections>
+                        <outlet property="chartView" destination="KBH-48-84E" id="5E3-CT-ACc"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1172" y="273"/>
+        </scene>
+    </scenes>
+</document>
