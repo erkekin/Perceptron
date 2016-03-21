@@ -53,6 +53,9 @@
                                     <constraint firstItem="BIO-6c-wkX" firstAttribute="top" secondItem="KBH-48-84E" secondAttribute="top" constant="23" id="tOS-FP-d94"/>
                                     <constraint firstItem="DMw-Zl-kAs" firstAttribute="leading" secondItem="KBH-48-84E" secondAttribute="leading" constant="19" id="xvP-Uz-Ozd"/>
                                 </constraints>
+                                <connections>
+                                    <outlet property="control" destination="BIO-6c-wkX" id="gy6-Vp-h1H"/>
+                                </connections>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>

@@ -26,8 +26,9 @@ class Node {
 class PerceptronView: UIView {
     
     var nodes:[Node] = []
-    let perceptron = Perceptron()
+    var perceptron = Perceptron()
     var sinif = -1
+    @IBOutlet var control:UISegmentedControl!
     
     var modelLine:CAShapeLayer?
     let gridWidth: CGFloat = 0.5
@@ -55,6 +56,8 @@ class PerceptronView: UIView {
         
         self.sinif = (self.sinif == -1) ? 1 : -1
         
+        sender.tintColor = (self.sinif == 1) ? UIColor.redColor(): UIColor.blueColor()
+        
     }
     
     func tapped(sender: UITapGestureRecognizer) {
@@ -63,23 +66,31 @@ class PerceptronView: UIView {
             
         case .Began:
             
-     
+            
             break
         case .Ended:
-           
+            perceptron = Perceptron()
             let inputs = self.nodes.map({[Double($0.point.x), Double($0.point.y)]})
             let outputs = self.nodes.map({Double($0.sinif)})
             
-            perceptron.train(inputs: inputs, outputs: outputs, learningRate: 0.5, epsilon: 0.0001)
-            
-            drawModel()
+            let queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)
+            dispatch_async(queue) { () -> Void in
+                
+                self.perceptron.train(inputs: inputs, outputs: outputs, learningRate: 0.5, epsilon: 0.001)
+                
+                dispatch_async(dispatch_get_main_queue(), {
+                    
+                    self.drawModel()
+                })
+                
+            }
             
             break
         case .Cancelled:
-         
+            
             break
         case .Failed:
-          
+            
             break
         case .Changed:
             
@@ -103,8 +114,14 @@ class PerceptronView: UIView {
         let tapPositionOneFingerTap = sender.locationInView(self)
         
         let inputs = [Double(tapPositionOneFingerTap.x), Double(tapPositionOneFingerTap.y)]
-        print( perceptron.test(inputs))
         
+        if perceptron.test(inputs) == 1 {
+            control.selectedSegmentIndex = 0
+            control.tintColor = UIColor.redColor()
+        }else {
+            control.selectedSegmentIndex = 1
+            control.tintColor = UIColor.blueColor()
+        }
     }
     
     func removeAll(){
@@ -117,7 +134,7 @@ class PerceptronView: UIView {
         }
         
         self.nodes = []
-        
+        perceptron = Perceptron()
     }
     
     // MARK: Drawing

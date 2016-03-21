@@ -11,9 +11,37 @@ import XCTest
 
 class PerceptronTests: XCTestCase {
     
+    
     override func setUp() {
         super.setUp()
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+        
+        let perceptron = Perceptron()
+        
+        var exampleInput = [[Double]]()
+        exampleInput.append([-1.0, -1.0])
+        exampleInput.append([-1.0,  1.0])
+        exampleInput.append([ 1.0, -1.0])
+        exampleInput.append([ 1.0,  1.0])
+        
+        
+        var exampleOutput = [Double]()
+        exampleOutput.append(-1.0)
+        exampleOutput.append(-1.0)
+        exampleOutput.append(-1.0)
+        exampleOutput.append( 1.0)
+        
+        perceptron.train(inputs: exampleInput, outputs: exampleOutput, learningRate: 0.5, epsilon: 0.0001)
+        
+        for i in exampleInput.indices {
+            
+            let input = exampleInput[i]
+            let expected = exampleOutput[i]
+            let output = perceptron.test(input)
+            XCTAssert(expected == output, "Should be equal")
+        }
+        
+        perceptron.test([1,-1])
+        
     }
     
     override func tearDown() {
